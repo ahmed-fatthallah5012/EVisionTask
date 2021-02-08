@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="label">
+        <h3>List of Customers</h3>
+    </div>
+    <div>
+        <button mat-icon-button aria-label="Refresh Data" (click)="onRefresh()">
+            <mat-icon>cached</mat-icon>
+        </button>
+        <mat-form-field>
+                <mat-icon matPrefix>search</mat-icon>
+                <input #searchBox matInput type="search" placeholder="search" class="search-input" (input)="onChangeEvent(searchBox.value)"> 
+        </mat-form-field>
+        <input
+            type="checkbox"
+            [checked]="status"
+            (change)="status = !status"/>
+            <label>Status</label>
+    </div>
+    <section>
+        <div class="content">
+            <div fxLayout="row wrap" fxLayoutGap="16px grid">
+                <app-customer-card *ngFor="let customer of service.list | customerFilter:searchText" [customer]="customer" [status]="status"></app-customer-card>    
+            </div>
+        </div>
+    </section>
+</div>
